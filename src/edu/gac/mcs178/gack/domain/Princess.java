@@ -1,15 +1,17 @@
 package edu.gac.mcs178.gack.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Princess extends AutoPerson {
-	
-	private Place pond;
-	
-	public Princess(String name, Place place, int threshold, Place pond) {
+
+    private AutoPerson auto;
+    private boolean gaveConsent;
+
+    public void setGaveConsent() { this.gaveConsent = true; }
+		
+	public Princess(String name, Place place, int threshold) {
 		super(name, place, threshold);
-		this.pond = pond;
+        this.gaveConsent = false;
 	}
 
 	@Override
@@ -21,27 +23,28 @@ public class Princess extends AutoPerson {
 		}
 	}
 
-	public void curse(Person person) {
+	public void kiss(Person person) {
 		if (person.getIsFrog()) {
-			say("I'm sending you back to the pond!");
-			person.moveTo(pond);
-		}
-		else {
-			say("Hah hah hah, I'm going to turn you into a frog, " + person);
-			turnIntoFrog(person);
-			say("Hee hee " + person + " looks better in green!");
+            // if the person is the player, they must have consent
+            if (person.getClass() != auto.getClass()) {
+                if (this.gaveConsent) {
+                    turnIntoHuman(person);
+                }
+                else {
+                    say("Back off. You do not have my consent!");
+                }
+            }
+            // person is an autoperson
+            else {
+                turnIntoHuman(person);
+            }
 		}
 	}
+
+    public void turnIntoHuman(Person person) {
+        person.setIsFrog(false);
+        say("Oh- a little slimey. Glad you're back to normal though.");
+    }
 	
-	public void turnIntoFrog(Person person) {
-		person.setIsFrog(true);
-		// need to copy person.getPossessions() in order to avoid a ConcurrentModificationException
-		List<Thing> personsPossessions = new ArrayList<Thing>(person.getPossessions());
-		for (Thing thing : personsPossessions) {
-			person.lose(thing);
-		}
-		person.say("Ribbitt!");
-		person.moveTo(pond);
-	}
 }
 
