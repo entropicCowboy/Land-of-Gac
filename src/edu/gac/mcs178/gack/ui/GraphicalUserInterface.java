@@ -58,7 +58,7 @@ public class GraphicalUserInterface extends JFrame implements MessageDisplay {
 		add(textScrollPane, BorderLayout.CENTER);
 		
 		// controlPanel contains all of the controls for the game
-		JPanel controlPanel = new JPanel(new GridLayout(3, 3));
+		JPanel controlPanel = new JPanel(new GridLayout(4, 3));
 		add(controlPanel, BorderLayout.NORTH);
 		
 		// Look around button
@@ -133,6 +133,11 @@ public class GraphicalUserInterface extends JFrame implements MessageDisplay {
 		dropActionListener = new DropActionListener(this, player, dropJComboBox);
 		dropJComboBox.addActionListener(dropActionListener);
 		controlPanel.add(dropJComboBox);
+
+		// View map button
+		JButton viewMapButton = new JButton("View Map");
+		viewMapButton.addActionListener(new ViewMapActionListener(this, player));
+		controlPanel.add(viewMapButton);
 	}
 	
 	public void playTurn() {
