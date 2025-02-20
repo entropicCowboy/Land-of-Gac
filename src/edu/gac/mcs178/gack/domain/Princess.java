@@ -8,6 +8,7 @@ public class Princess extends AutoPerson {
     private boolean gaveConsent;
 
     public void setGaveConsent() { this.gaveConsent = true; }
+    public Boolean getGaveConsent() { return this.gaveConsent; }
 		
 	public Princess(String name, Place place, int threshold) {
 		super(name, place, threshold);
@@ -23,7 +24,7 @@ public class Princess extends AutoPerson {
 		}
 	}
 
-	public void kiss(Person person) {
+	public Boolean kiss(Person person) {
 		if (person.getIsFrog()) {
             // if the person is the player, they must have consent
             if (person.getClass() != auto.getClass()) {
@@ -39,6 +40,7 @@ public class Princess extends AutoPerson {
                 turnIntoHuman(person);
             }
 		}
+        return this.gaveConsent;
 	}
 
     public void turnIntoHuman(Person person) {
