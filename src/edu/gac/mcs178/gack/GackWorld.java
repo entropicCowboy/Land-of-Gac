@@ -3,6 +3,7 @@ package edu.gac.mcs178.gack;
 import edu.gac.mcs178.gack.domain.AutoPerson;
 import edu.gac.mcs178.gack.domain.Person;
 import edu.gac.mcs178.gack.domain.Place;
+import edu.gac.mcs178.gack.domain.Princess;
 import edu.gac.mcs178.gack.domain.Scroll;
 import edu.gac.mcs178.gack.domain.Thing;
 import edu.gac.mcs178.gack.domain.Witch;
@@ -51,6 +52,7 @@ public class GackWorld extends World {
 		new AutoPerson("Karl", computerLab, 4);
 		new Witch("Barbara", offices, 3, pond);
 		new Wizard("Elvee", offices, 1, chamberOfWizards);
+		new Princess("Princess Tiana", alumniHall, 3); // added new princess character
 		
 		lounge.gain(new Thing("Karl's glasses"));
 		
