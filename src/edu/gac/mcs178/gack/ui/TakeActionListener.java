@@ -45,7 +45,7 @@ public class TakeActionListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (enabled) {
+		if (enabled) { 
 			if (!player.getIsFrog()) {
 				Thing item = (Thing) takeJComboBox.getSelectedItem();
 				if (!item.equals(INTSRUCTIONS)) {
@@ -55,7 +55,7 @@ public class TakeActionListener implements ActionListener {
 				}
 			}
 			else {	// Player is a frog and cannot pick up items
-				gui.displayMessage("player says -- It's not easy being green");
+				player.say("It's not easy being green");
 			}
 		}
 	}
