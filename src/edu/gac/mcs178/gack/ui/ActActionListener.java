@@ -23,11 +23,11 @@ public class ActActionListener implements ActionListener {
 	private Princess princess;
 	private List<Person> otherPeople;
 
-	public ActActionListener(GraphicalUserInterface gui, Person player, JComboBox readJComboBox) {
+	public ActActionListener(GraphicalUserInterface gui, Person player, JComboBox actJComboBox) {
 		super();
 		this.gui = gui;
 		this.player = player;
-		this.actJComboBox = readJComboBox;
+		this.actJComboBox = actJComboBox;
 		this.enabled = true;
 		scrolls = Scroll.scrollsIn(player.getPlace());
 		actJComboBox.addItem(INTSRUCTIONS);
@@ -44,22 +44,24 @@ public class ActActionListener implements ActionListener {
 		actJComboBox.removeAllItems();
 		scrolls = Scroll.scrollsIn(player.getPlace());
 		actJComboBox.addItem(INTSRUCTIONS);
+		for (Scroll scroll : scrolls) {
+			actJComboBox.addItem(scroll);
+		}
 
 		otherPeople = player.otherPeopleAtSamePlace();
+		this.princess = null; // reset princess before searching
 		for (Person person: otherPeople) {
 			if (person.getName().equals("Princess Tiana")) {
-				princess = person;
+				this.princess = (Princess) person;
+				break;
 			}
 		}
 
-		if (player.getPlace() == princess.getPlace()) {
+		if (this.princess != null && player.getPlace() == princess.getPlace()) {
 			actJComboBox.addItem(kiss);
 			if (!princess.getGaveConsent()) {
 				actJComboBox.addItem(askConsent);
 			}
-		}
-		for (Scroll scroll : scrolls) {
-			actJComboBox.addItem(scroll);
 		}
 	}
 
@@ -86,8 +88,6 @@ public class ActActionListener implements ActionListener {
 						gui.displayMessage("\n>>> Princess Tiana kisses " + player.getName() + "!");
 					}
 				}
-				
-				
 				gui.playTurn();
 			}
 		}
