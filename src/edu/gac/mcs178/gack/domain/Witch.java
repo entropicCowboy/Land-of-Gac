@@ -32,8 +32,13 @@ public class Witch extends AutoPerson {
 		}
 		else {
 			say("Hah hah hah, I'm going to turn you into a frog, " + person);
-			turnIntoFrog(person);
-			say("Hee hee " + person + " looks better in green!");
+			if (person.getClass().equals(Princess.class)) {	// don't let witch curse Princess Tiana
+				say("Why didn't that work? Guess I'll find another victim");
+			}
+			else {
+				turnIntoFrog(person);
+				say("Hee hee " + person + " looks better in green!");
+			}
 		}
 	}
 	

@@ -33,12 +33,12 @@ public class GraphicalUserInterface extends JFrame implements MessageDisplay {
 	private JComboBox goJComboBox;
 	private JComboBox takeJComboBox;
 	private JComboBox dropJComboBox;
-	private JComboBox readJComboBox;
+	private JComboBox actJComboBox;
 	private JComboBox giveJComboBox;
 	private GoActionListener goActionListener;
 	private TakeActionListener takeActionListener;
 	private DropActionListener dropActionListener;
-	private ReadActionListener readActionListener;
+	private ActActionListener actActionListener;
 	private GiveActionListener giveActionListener;
 	
 	public GraphicalUserInterface(Person player) {
@@ -120,12 +120,12 @@ public class GraphicalUserInterface extends JFrame implements MessageDisplay {
 		changeNameButton.addActionListener(new ChangePlayersNameActionListener(this, player));
 		controlPanel.add(changeNameButton);
 
-		// Read combo box
+		// Act combo box
 		
-		readJComboBox = new JComboBox();
-		readActionListener = new ReadActionListener(this, player, readJComboBox);
-		readJComboBox.addActionListener(readActionListener);
-		controlPanel.add(readJComboBox);
+		actJComboBox = new JComboBox();
+		actActionListener = new ActActionListener(this, player, actJComboBox);
+		actJComboBox.addActionListener(actActionListener);
+		controlPanel.add(actJComboBox);
 
 		// Drop combo box
 		
@@ -150,7 +150,7 @@ public class GraphicalUserInterface extends JFrame implements MessageDisplay {
 		goActionListener.updateJComboBox();
 		takeActionListener.updateJComboBox();
 		dropActionListener.updateJComboBox();
-		readActionListener.updateJComboBox();
+		actActionListener.updateJComboBox();
 		giveActionListener.updateJComboBox();
 		enableJComboListeners(true);
 	}
@@ -159,7 +159,7 @@ public class GraphicalUserInterface extends JFrame implements MessageDisplay {
 		goActionListener.setEnabled(b);
 		takeActionListener.setEnabled(b);
 		dropActionListener.setEnabled(b);
-		readActionListener.setEnabled(b);
+		actActionListener.setEnabled(b);
 		giveActionListener.setEnabled(b);
 	}
 	
