@@ -58,9 +58,11 @@ public class ActActionListener implements ActionListener {
 		}
 
 		if (this.princess != null && player.getPlace() == princess.getPlace()) {
-			actJComboBox.addItem(kiss);
-			if (!princess.getGaveConsent()) {
-				actJComboBox.addItem(askConsent);
+			if (player.getIsFrog()) {
+				actJComboBox.addItem(kiss);
+				if (!princess.getGaveConsent()) {
+					actJComboBox.addItem(askConsent);
+				}
 			}
 		}
 	}
@@ -68,16 +70,21 @@ public class ActActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (enabled) {
-			Scroll item = (Scroll) actJComboBox.getSelectedItem();
-			if (!item.getName().equals(INTSRUCTIONS.getName())) {
-				// if the item is a Scroll
-				if (item.getClass().equals(INTSRUCTIONS.getClass())) {	// item is of the Scroll class
-					gui.displayMessage("\n>>> Read " + item);
-					player.read(item);
+			try { // only works if item is a scroll
+				Scroll item = (Scroll) actJComboBox.getSelectedItem();
+				if (!item.getName().equals(INTSRUCTIONS.getName())) {
+					// if the item is a Scroll
+					if (item.getClass().equals(INTSRUCTIONS.getClass())) {	// item is of the Scroll class
+						gui.displayMessage("\n>>> Read " + item);
+						player.read(item);
+					}
 				}
+			} 
+			catch (Exception except) {
+				Thing item = (Thing) actJComboBox.getSelectedItem();
 				// if the item is asking for consent
 				if (item.getName().equals(askConsent.getName())) {
-					gui.displayMessage("\n>>> Can I kiss you?");
+					player.say("Can I kiss you?");
 					princess.say("Yes!");
 					princess.setGaveConsent();
 				}
@@ -88,8 +95,8 @@ public class ActActionListener implements ActionListener {
 						gui.displayMessage("\n>>> Princess Tiana kisses " + player.getName() + "!");
 					}
 				}
-				gui.playTurn();
 			}
+			gui.playTurn();
 		}
 	}
 }

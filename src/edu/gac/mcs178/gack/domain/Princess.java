@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Princess extends AutoPerson {
 
-    private AutoPerson auto;
+    // private AutoPerson auto;
     private boolean gaveConsent;
 
     public void setGaveConsent() { this.gaveConsent = true; }
@@ -27,7 +27,7 @@ public class Princess extends AutoPerson {
 	public Boolean kiss(Person person) {
 		if (person.getIsFrog()) {
             // if the person is the player, they must have consent
-            if (person.getClass() != auto.getClass()) {
+            if (person.getClass() != AutoPerson.class) {
                 if (this.gaveConsent) {
                     turnIntoHuman(person);
                 }
