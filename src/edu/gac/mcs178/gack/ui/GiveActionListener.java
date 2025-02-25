@@ -88,16 +88,23 @@ class GiveAction extends AbstractAction  {
 
 	public void actionPerformed(ActionEvent event) {
 		if (enabled) {
-			if (recipient.getName().equals("Max")) {
-				if (item.getName().equals("Late Lab Report")) {
+			if (item.getName().equals("Late Lab Report")) {
+				if (recipient.getName().equals("Max")) {
 					// player give the lab report to Max;
 					player.give(item, recipient);
 					gui.displayMessage("You have given the Late Lab Report to Max!");
 				}
+				else {
+					gui.displayMessage("You probably don't want to lose that so quickly!");
+				}
 			}
+			// for any other item, display generic message
 			else {
-				gui.displayMessage("You probably don't want to lose that so quickly!");
+				player.give(item, recipient);
+				gui.displayMessage("You have given the " + item.getName() + " to " + recipient.getName() + "!");
+
 			}
+			
 		}
 		gui.playTurn();
 	}

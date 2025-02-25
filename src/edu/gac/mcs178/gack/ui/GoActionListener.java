@@ -1,12 +1,10 @@
 package edu.gac.mcs178.gack.ui;
 
+import edu.gac.mcs178.gack.domain.Person;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-
 import javax.swing.JComboBox;
-
-import edu.gac.mcs178.gack.domain.Person;
 
 public class GoActionListener implements ActionListener {
 	

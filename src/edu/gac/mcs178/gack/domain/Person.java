@@ -84,7 +84,7 @@ public class Person {
 		}
 		place = newPlace;
 		greet(otherPeopleAtSamePlace());
-		if ("Pond".equals(place.getName())) {
+		if ("Pond".equals(place.getName()) && this.getIsFrog()) {
 			say("This pond feels nice, but I need to find my princess!");
 		}
 	}
