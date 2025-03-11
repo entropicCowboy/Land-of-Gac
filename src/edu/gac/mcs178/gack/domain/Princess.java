@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Princess extends AutoPerson {
 
-    // private AutoPerson auto;
     private boolean gaveConsent;
 
     public void setGaveConsent() { this.gaveConsent = true; }
