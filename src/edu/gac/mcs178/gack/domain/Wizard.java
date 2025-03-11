@@ -15,9 +15,13 @@ public class Wizard extends AutoPerson {
 	public void act() {
 		List<Scroll> scrolls = Scroll.scrollsIn(getPlace());
 		if ((!scrolls.isEmpty()) && (!getPlace().equals(chamber))) {
-			take(scrolls.get(0));
-			moveTo(chamber);
-			lose(scrolls.get(0));
+			if (this.getIsFrog()) {
+				say("If I wasn't a frog, that scroll would be mine.");
+			} else {
+				take(scrolls.get(0));
+				moveTo(chamber);
+				lose(scrolls.get(0));
+			}
 		} else {
 			super.act();
 		}

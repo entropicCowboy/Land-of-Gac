@@ -18,8 +18,14 @@ public class Princess extends AutoPerson {
 	public void act() {
 		List<Person> others = otherPeopleAtSamePlace();
 		if (!others.isEmpty()) {
+            for (Person person: others) {
+			    if (person.getClass() == AutoPerson.class && person.getIsFrog()) {
+                    kiss(person);
+				    break;
+			    }
+		    }
 		} else {
-			super.act();
+            super.act();
 		}
 	}
 
@@ -36,6 +42,7 @@ public class Princess extends AutoPerson {
             }
             // person is an autoperson
             else {
+                say("I'm going to kiss " + person.getName() + "!");
                 turnIntoHuman(person);
             }
 		}
